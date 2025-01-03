@@ -56,7 +56,7 @@ const Blogs = () => {
             </div>
           ))}
         </div>
-        <div className="flex  flex-col lg:flex-row ">
+        <div className="flex  flex-col lg:flex-row gap-4 ">
             <div className=" w-full lg:w-3/4">
             <BlogCard selected={selectedCategory} blogs={blogs} />
             </div>

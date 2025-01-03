@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import { IoMdPerson } from "react-icons/io";
+import { Link } from "react-router-dom";
 const BlogCard = ({ selected, blogs }) => {
   const blogsToRender =
     selected !== null
@@ -23,7 +24,15 @@ const BlogCard = ({ selected, blogs }) => {
 
   // Paginate blogsToRender based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedBlogs = blogsToRender.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedBlogs = blogsToRender.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  //const [id,setId]=useState(null);
+ const handdleClick=(id)=>{
+  console.log("clicked"+id);
+  //setId(id)
+ }
 
   return (
     <>
@@ -37,21 +46,22 @@ const BlogCard = ({ selected, blogs }) => {
               </h2>
               <div className="flex gap-2">
                 <IoMdPerson className="text-lg" />
-              <p className="text-sm">{blog.
-author
-}</p></div>
-              <p className="text-sm">{blog.
-published_date}</p>
-<p className="text-sm">{blog.
-reading_time}</p>
-              <button  className="p-2 border border-black rounded-md">
+                <p className="text-sm">{blog.author}</p>
+              </div>
+              <p className="text-sm">{blog.published_date}</p>
+              <p className="text-sm">{blog.reading_time}</p>
+              <button
+               onClick={()=>handdleClick(blog.id)}
+                className="p-2 border border-black rounded-md"
+              >
                 Read more...
               </button>
+              <Link  to={`/blog/${blog.id}`}>Read More</Link>
             </div>
           </div>
         ))}
       </div>
-
+     
       <div>
         <Pagination
           currentPage={currentPage}
